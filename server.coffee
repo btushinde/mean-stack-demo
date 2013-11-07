@@ -5,6 +5,7 @@ express = require("express")
 fs = require("fs")
 passport = require("passport")
 logger = require("mean-logger")
+stylus = require("stylus")
 
 ###
 Main application entry file.
