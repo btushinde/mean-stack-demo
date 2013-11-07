@@ -1,15 +1,17 @@
-window.bootstrap = function() {
-    angular.bootstrap(document, ['mean']);
-};
+(function() {
+  window.bootstrap = function() {
+    return angular.bootstrap(document, ["mean"]);
+  };
 
-window.init = function() {
-    window.bootstrap();
-};
+  window.init = function() {
+    return window.bootstrap();
+  };
 
-angular.element(document).ready(function() {
-    //Fixing facebook bug with redirect
-    if (window.location.hash == "#_=_") window.location.hash = "";
+  angular.element(document).ready(function() {
+    if (window.location.hash === "#_=_") {
+      window.location.hash = "";
+    }
+    return window.init();
+  });
 
-    //Then init the app
-    window.init();
-});
+}).call(this);

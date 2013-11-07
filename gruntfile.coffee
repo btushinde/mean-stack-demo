@@ -12,11 +12,27 @@ module.exports = (grunt) ->
         options:
           livereload: true
 
-      js:
-        files: ['public/js/**', 'app/**/*.js']
-        tasks: ['jshint']
+      coffee:
+        files: 'assets/js/**/*.coffee'
+        tasks: ['coffeelint:app', 'coffee']
         options:
           livereload: true
+
+      coffee_server:
+        files: 'app/**/*.coffee'
+        tasks: ['coffeelint:server']
+
+      stylus:
+        files: 'assets/css/**/*.styl'
+        tasks: ['stylus']
+        options:
+          livereload: true
+
+      # js:
+      #   files: ['public/js/**', 'app/**/*.js']
+      #   tasks: ['jshint']
+      #   options:
+      #     livereload: true
 
       html:
         files: ['public/views/**']
@@ -28,8 +44,51 @@ module.exports = (grunt) ->
         options:
           livereload: true
 
-    jshint:
-      all: ['gruntfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js']
+    # jshint:
+    #   all: ['gruntfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js']
+
+
+    # Compile Stylus to CSS
+    stylus:
+      compile:
+        options:
+          linenos: true
+          compress: false
+        files: [{
+          expand: true
+          cwd: 'assets/css'
+          src:  '**/*.styl'
+          dest: 'public/css'
+          ext:  '.css'
+        }]
+
+
+
+    # Compile CoffeeScript
+    coffee:
+      compile:
+        files:[{
+          expand: true
+          cwd: 'assets/js',
+          src:  '**/*.coffee'
+          dest: 'public/js'
+          ext:  '.js'
+        }]
+
+
+    # CoffeeLint for helpful feedback
+    coffeelint:
+      app: ['assets/**/*.coffee']
+      server: ['app/**/*.coffee']
+      gruntfile: 'Gruntfile.coffee'
+      options:
+        max_line_length:
+          value: 160
+          level: 'warn'
+        no_throwing_strings:
+          level: 'warn'
+
+
 
     nodemon:
       dev:
@@ -65,7 +124,7 @@ module.exports = (grunt) ->
   grunt.option 'force', true
 
   #Default task(s).
-  grunt.registerTask 'default', ['jshint', 'concurrent']
+  grunt.registerTask 'default', ['coffeelint', 'concurrent']
 
   #Test task.
   grunt.registerTask 'test', ['env:test', 'mochaTest']

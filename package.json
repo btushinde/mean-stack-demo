@@ -49,6 +49,9 @@
     "grunt-nodemon": "latest",
     "grunt-concurrent": "latest",
     "grunt-mocha-test": "latest",
-    "matchdep": "~0.3.0"
+    "matchdep": "~0.3.0",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-coffeelint": "0.0.7",
+    "grunt-contrib-stylus": "~0.9.0"
   }
 }

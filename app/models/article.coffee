@@ -1,13 +1,11 @@
-###
-Module dependencies.
-###
-mongoose = require("mongoose")
-config = require("../../config/config")
+
+# Module dependencies.
+mongoose = require('mongoose')
+config = require('../../config/config')
 Schema = mongoose.Schema
 
-###
-Article Schema
-###
+
+# Article Schema
 ArticleSchema = new Schema(
   created:
     type: Date
@@ -15,30 +13,29 @@ ArticleSchema = new Schema(
 
   title:
     type: String
-    default: ""
+    default: ''
     trim: true
 
   content:
     type: String
-    default: ""
+    default: ''
     trim: true
 
   user:
     type: Schema.ObjectId
-    ref: "User"
+    ref: 'User'
 )
 
-###
-Validations
-###
-ArticleSchema.path("title").validate ((title) ->
+
+# Validations
+ArticleSchema.path('title').validate ((title) ->
   title.length
-), "Title cannot be blank"
+), 'Title cannot be blank'
 
-###
-Statics
-###
+
+
+# Statics
 ArticleSchema.statics = load: (id, cb) ->
-  @findOne(_id: id).populate("user", "name username").exec cb
+  @findOne(_id: id).populate('user', 'name username').exec cb
 
-mongoose.model "Article", ArticleSchema
+mongoose.model 'Article', ArticleSchema

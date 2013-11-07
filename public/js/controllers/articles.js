@@ -1,52 +1,56 @@
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'Articles', function ($scope, $routeParams, $location, Global, Articles) {
-    $scope.global = Global;
-
-    $scope.create = function() {
-        var article = new Articles({
-            title: this.title,
-            content: this.content
+(function() {
+  angular.module("mean.articles").controller("ArticlesController", [
+    "$scope", "$routeParams", "$location", "Global", "Articles", function($scope, $routeParams, $location, Global, Articles) {
+      $scope.global = Global;
+      $scope.create = function() {
+        var article;
+        article = new Articles({
+          title: this.title,
+          content: this.content
         });
         article.$save(function(response) {
-            $location.path("articles/" + response._id);
+          return $location.path("articles/" + response._id);
         });
-
         this.title = "";
-        this.content = "";
-    };
-
-    $scope.remove = function(article) {
-        article.$remove();  
-
-        for (var i in $scope.articles) {
-            if ($scope.articles[i] == article) {
-                $scope.articles.splice(i, 1);
-            }
+        return this.content = "";
+      };
+      $scope.remove = function(article) {
+        var i, _results;
+        article.$remove();
+        _results = [];
+        for (i in $scope.articles) {
+          if ($scope.articles[i] === article) {
+            _results.push($scope.articles.splice(i, 1));
+          } else {
+            _results.push(void 0);
+          }
         }
-    };
-
-    $scope.update = function() {
-        var article = $scope.article;
+        return _results;
+      };
+      $scope.update = function() {
+        var article;
+        article = $scope.article;
         if (!article.updated) {
-            article.updated = [];
+          article.updated = [];
         }
         article.updated.push(new Date().getTime());
-
-        article.$update(function() {
-            $location.path('articles/' + article._id);
+        return article.$update(function() {
+          return $location.path("articles/" + article._id);
         });
-    };
-
-    $scope.find = function() {
-        Articles.query(function(articles) {
-            $scope.articles = articles;
+      };
+      $scope.find = function() {
+        return Articles.query(function(articles) {
+          return $scope.articles = articles;
         });
-    };
-
-    $scope.findOne = function() {
-        Articles.get({
-            articleId: $routeParams.articleId
+      };
+      return $scope.findOne = function() {
+        return Articles.get({
+          articleId: $routeParams.articleId
         }, function(article) {
-            $scope.article = article;
+          return $scope.article = article;
         });
-    };
-}]);
+      };
+    }
+  ]);
+
+}).call(this);
