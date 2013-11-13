@@ -8,7 +8,7 @@ helpers = require('view-helpers')
 config = require('./config')
 
 
-module.exports = (app, passport, db) ->
+module.exports = (app, db) ->
   app.set 'showStackError', true
 
   #Prettify HTML
@@ -30,7 +30,7 @@ module.exports = (app, passport, db) ->
   app.use express.logger('dev')  if process.env.NODE_ENV isnt 'test'
 
   #Set views path, template engine and default layout
-  app.set 'views', config.root + '/app/views'
+  app.set 'views', config.root + '/views'
   app.set 'view engine', 'jade'
 
   #Enable jsonp
@@ -59,10 +59,6 @@ module.exports = (app, passport, db) ->
     #dynamic helpers
     app.use helpers(config.app.name)
 
-    #use passport session
-    app.use passport.initialize()
-    app.use passport.session()
-
     #routes should be at the last
     app.use app.router
 
@@ -78,7 +74,6 @@ module.exports = (app, passport, db) ->
       #Error page
       res.status(500).render '500',
         error: err.stack
-
 
 
     #Assume 404 since no middleware responded

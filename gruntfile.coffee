@@ -8,7 +8,7 @@ module.exports = (grunt) ->
 
     watch:
       jade:
-        files: ['app/views/**']
+        files: ['app/views/**', 'jade']
         options:
           livereload: true
 
@@ -28,25 +28,20 @@ module.exports = (grunt) ->
         options:
           livereload: true
 
-      # js:
-      #   files: ['public/js/**', 'app/**/*.js']
-      #   tasks: ['jshint']
-      #   options:
-      #     livereload: true
 
-      html:
-        files: ['public/views/**']
-        options:
-          livereload: true
 
-      css:
-        files: ['public/css/**']
-        options:
-          livereload: true
 
-    # jshint:
-    #   all: ['gruntfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js']
 
+    # Compile Jade templates
+    jade:
+      compile:
+        files:[
+          expand: true
+          cwd: 'views',
+          src:  '**/*.jade'
+          dest: 'public/views'
+          ext:  '.html'
+        ]
 
     # Compile Stylus to CSS
     stylus:
@@ -54,26 +49,24 @@ module.exports = (grunt) ->
         options:
           linenos: true
           compress: false
-        files: [{
+        files: [
           expand: true
           cwd: 'assets/css'
           src:  '**/*.styl'
           dest: 'public/css'
           ext:  '.css'
-        }]
-
-
+        ]
 
     # Compile CoffeeScript
     coffee:
       compile:
-        files:[{
+        files: [
           expand: true
           cwd: 'assets/js',
           src:  '**/*.coffee'
           dest: 'public/js'
           ext:  '.js'
-        }]
+        ]
 
 
     # CoffeeLint for helpful feedback
@@ -89,7 +82,28 @@ module.exports = (grunt) ->
           level: 'warn'
 
 
+    # Clean up asset files
+    clean:
+      js:     ['public/js']
+      css:    ['public/css']
+      views:  ['public/views']
+      images: ['public/img']
 
+    # Copy files
+    copy:
+      images:
+        files:[
+          expand: true
+          cwd: 'assets/img'
+          src: '**/*'
+          dest: 'public/img'
+          filter: 'isFile'
+        ]
+
+
+
+
+    # Reload the Node server on code change
     nodemon:
       dev:
         options:
@@ -101,14 +115,10 @@ module.exports = (grunt) ->
           delayTime: 1
           env:
             PORT: 3000
-
           cwd: __dirname
 
-    concurrent:
-      tasks: ['nodemon', 'watch']
-      options:
-        logConcurrentOutput: true
 
+    # Run Mocha tests
     mochaTest:
       options:
         reporter: 'spec'
@@ -120,11 +130,18 @@ module.exports = (grunt) ->
 
 
 
-  #Making grunt default to force in order not to break the project.
-  grunt.option 'force', true
+  # DEFINE TASKS
 
-  #Default task(s).
-  grunt.registerTask 'default', ['coffeelint', 'concurrent']
+     # Multi-core tasking!
+    concurrent:
+      tasks: ['nodemon', 'watch']
+      options:
+        logConcurrentOutput: true
 
-  #Test task.
-  grunt.registerTask 'test', ['env:test', 'mochaTest']
+
+  # Default task(s).
+  grunt.registerTask 'default',   ['build', 'coffeelint:server', 'concurrent']
+  grunt.registerTask 'build',     ['clean', 'coffeelint:app', 'coffee', 'jade', 'stylus', 'copy']
+
+  # Test task.
+  grunt.registerTask 'test',      ['env:test', 'mochaTest']

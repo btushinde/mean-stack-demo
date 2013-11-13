@@ -20,10 +20,6 @@ ArticleSchema = new Schema(
     type: String
     default: ''
     trim: true
-
-  user:
-    type: Schema.ObjectId
-    ref: 'User'
 )
 
 
@@ -32,10 +28,5 @@ ArticleSchema.path('title').validate ((title) ->
   title.length
 ), 'Title cannot be blank'
 
-
-
-# Statics
-ArticleSchema.statics = load: (id, cb) ->
-  @findOne(_id: id).populate('user', 'name username').exec cb
 
 mongoose.model 'Article', ArticleSchema

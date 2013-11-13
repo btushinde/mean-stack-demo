@@ -1,0 +1,12 @@
+
+/* line 1 : /usr/local/smhome/_labs/talks/mean/node_modules/grunt-contrib-stylus/node_modules/stylus/lib/functions/index.styl */
+
+/* line 1 : /usr/local/smhome/_labs/talks/mean/assets/css/articles.styl */
+h1 {
+  text-align: center;
+}
+
+/* line 5 : /usr/local/smhome/_labs/talks/mean/assets/css/articles.styl */
+ul.articles li:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}

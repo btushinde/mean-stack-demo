@@ -1,25 +1,32 @@
+
+/* line 1 : /usr/local/smhome/_labs/talks/mean/node_modules/grunt-contrib-stylus/node_modules/stylus/lib/functions/index.styl */
+
+/* line 1 : /usr/local/smhome/_labs/talks/mean/assets/css/common.styl */
 .navbar .nav>li>a.brand {
-    padding-left:20px;
-    margin-left:0
+  padding-left: 20px;
+  margin-left: 0;
 }
 
+/* line 6 : /usr/local/smhome/_labs/talks/mean/assets/css/common.styl */
 .content {
-    margin-top:50px;
-    width:100%
+  margin-top: 50px;
+  width: 100%;
 }
 
+/* line 11 : /usr/local/smhome/_labs/talks/mean/assets/css/common.styl */
 footer {
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    height:30px;
-    width:100%;
-    background:#ddd;
-    -webkit-box-shadow:0 8px 6px 6px black;
-    -moz-box-shadow:0 8px 6px 6px black;
-    box-shadow:0 8px 6px 6px black
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 30px;
+  width: 100%;
+  background: #ddd;
+  -webkit-box-shadow: 0 8px 6px 6px #000;
+  -moz-box-shadow: 0 8px 6px 6px #000;
+  box-shadow: 0 8px 6px 6px #000;
 }
 
+/* line 23 : /usr/local/smhome/_labs/talks/mean/assets/css/common.styl */
 footer p {
-    padding:5px 0 12px 10px
+  padding: 5px 0 12px 10px;
 }
