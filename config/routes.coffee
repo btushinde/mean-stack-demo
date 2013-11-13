@@ -2,7 +2,7 @@ async = require('async')
 module.exports = (app) ->
 
   #Article Routes
-  articles = require('../app/controllers/articles')
+  articles = require('../server/controllers/articles')
   app.get '/articles', articles.all
   app.post '/articles', articles.create
   app.get '/articles/:articleId', articles.show
@@ -14,5 +14,5 @@ module.exports = (app) ->
 
 
   #Home route
-  index = require('../app/controllers/index')
+  index = require('../server/controllers/index')
   app.get '/', index.render
