@@ -2,6 +2,4 @@
 .nodemonignore
 .sass-cache/
 node_modules/
-public/libpublic
-public
 public
