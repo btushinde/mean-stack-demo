@@ -34,6 +34,8 @@ module.exports = (grunt) ->
 
     # Compile Jade templates
     jade:
+      options:
+        pretty: true
       compile:
         files:[
           expand: true

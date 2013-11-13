@@ -1,1 +1,22 @@
-<section data-ng-controller="ArticlesController"><form data-ng-submit="create()" class="form-horizontal"><div class="control-group"><label for="title" class="control-label">Title</label><div class="controls"><input id="title" type="text" data-ng-model="title" placeholder="Title" required="required"/></div></div><div class="control-group"><label for="content" class="control-label">Content</label><div class="controls"><textarea id="content" data-ng-model="content" cols="30" rows="10" placeholder="Content"></textarea></div></div><div class="control-group"><div class="controls"><input type="submit" class="btn"/></div></div></form></section>
+
+<section data-ng-controller="ArticlesController">
+  <form data-ng-submit="create()" class="form-horizontal">
+    <div class="control-group">
+      <label for="title" class="control-label">Title</label>
+      <div class="controls">
+        <input id="title" type="text" data-ng-model="title" placeholder="Title" required="required"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="content" class="control-label">Content</label>
+      <div class="controls">
+        <textarea id="content" data-ng-model="content" cols="30" rows="10" placeholder="Content"></textarea>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" class="btn"/>
+      </div>
+    </div>
+  </form>
+</section>

@@ -1,1 +1,19 @@
-<div data-ng-controller="HeaderController" class="navbar-inner"><ul class="nav"><li><a href="/" class="brand">MEAN - A Modern Stack</a></li><li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}"><a href="#!/{{item.link}}">{{item.title}}</a></li></ul><ul data-ng-hide="global.authenticated" class="nav pull-right"><li><a href="signup">Signup</a></li><li class="divider-vertical"></li><li><a href="signin">Signin</a></li></ul><ul data-ng-show="global.authenticated" class="nav pull-right"><li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">{{global.user.name}}<b class="caret"></b></a><ul class="dropdown-menu"><li><a href="/signout">Signout</a></li></ul></li></ul></div>
+
+<div data-ng-controller="HeaderController" class="navbar-inner">
+  <ul class="nav">
+    <li><a href="/" class="brand">MEAN - A Modern Stack</a></li>
+    <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}"><a href="#!/{{item.link}}">{{item.title}}</a></li>
+  </ul>
+  <ul data-ng-hide="global.authenticated" class="nav pull-right">
+    <li><a href="signup">Signup</a></li>
+    <li class="divider-vertical"></li>
+    <li><a href="signin">Signin</a></li>
+  </ul>
+  <ul data-ng-show="global.authenticated" class="nav pull-right">
+    <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">{{global.user.name}}<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="/signout">Signout</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>

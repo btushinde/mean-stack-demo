@@ -19,13 +19,9 @@ exports.article = (req, res, next, id) ->
 # Create a article
 exports.create = (req, res) ->
   article = new Article(req.body)
-  article.user = req.user
   article.save (err) ->
     if err
-      res.send 'users/signup',
-        errors: err.errors
-        article: article
-
+      res.send 500, 'Something broke!'
     else
       res.jsonp article
 
@@ -64,7 +60,7 @@ exports.show = (req, res) ->
 
 # List of Articles
 exports.all = (req, res) ->
-  Article.find().sort('-created').populate('user', 'name username').exec (err, articles) ->
+  Article.find().sort('-created').exec (err, articles) ->
     if err
       res.render 'error',
         status: 500
