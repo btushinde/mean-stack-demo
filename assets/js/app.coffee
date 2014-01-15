@@ -5,6 +5,7 @@ window.app = angular.module 'mean', [
   'ui.route',
   'mean.system',
   'mean.articles'
+  'unicorn-directive'
 ]
 
 angular.module 'mean.system', []

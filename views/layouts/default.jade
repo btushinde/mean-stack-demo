@@ -1,4 +1,4 @@
-!!! 5
+doctype html
 html(lang='en')
   include ../includes/head
   body
@@ -8,7 +8,7 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='/admin')
+          a.navbar-brand(href='/')
             | MEAN Introduction
             sup  1.0
         #nav-collapse.collapse.navbar-collapse
@@ -17,14 +17,6 @@ html(lang='en')
               a(href='/admin') Admin
             li
               a(href='/apps') Apps
-          ul.nav.navbar-nav.navbar-right
-            li.dropdown.hidden-xs
-              a.dropdown-toggle(href='#', data-toggle='dropdown')
-                | Theme: {{ currentTheme }}
-                b.caret
-              ul.dropdown-menu
-                li(ng-repeat='theme in themes')
-                  a(ng-click='changeTheme(theme)') {{ theme.name }}
 
     section.content
       section.container

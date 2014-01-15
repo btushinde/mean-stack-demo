@@ -8,7 +8,8 @@ module.exports = (grunt) ->
 
     watch:
       jade:
-        files: ['app/views/**', 'jade']
+        files: ['views/**/*.jade']
+        tasks: ['jade']
         options:
           livereload: true
 
@@ -27,9 +28,6 @@ module.exports = (grunt) ->
         tasks: ['stylus']
         options:
           livereload: true
-
-
-
 
 
     # Compile Jade templates

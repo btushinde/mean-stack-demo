@@ -16,3 +16,5 @@ module.exports = (app) ->
   #Home route
   index = require('../server/controllers/index')
   app.get '/', index.render
+  app.get '/apps', index.render
+  app.get '/admin', index.render
